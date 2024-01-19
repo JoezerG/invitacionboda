@@ -1,0 +1,17 @@
+{
+  "name": "invitacion-boda",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/bodoni-moda": "^5.0.9",
+    "astro": "^4.1.3",
+    "sass": "^1.69.7"
+  }
+}

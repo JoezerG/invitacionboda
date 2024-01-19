@@ -1,0 +1,165 @@
+---
+const name = Astro.url.searchParams.get("name");
+const noReception = Astro.url.searchParams.get("rc") === "false";
+const CASAROCA_GEO = "6.1859761215754725,-75.58374934139052";
+const CASAMADERO_GEO = "6.174056655310626,-75.55976371249594";
+const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
+  "Hola! Claro nosotros confirmamos 🤵🏻👰🏻‍♀️🎉"
+)}`;
+---
+
+<main>
+  <section id="videoContainer">
+    <h1>Hola, {name}</h1>
+    <video id="videoplayer" src="video_invitacion.mp4" autoplay="true"></video>
+  </section>
+  <section id="information">
+    <div class="content">
+      <p>
+        <b>Fecha:</b>
+        <span>9 de marzo 2024</span>
+      </p>
+      <p>
+        <b>Hora:</b>
+        <span>11 AM</span>
+      </p>
+      <p>
+        <b>Ceremonia:</b>
+        <span>Iglesia CasaRoca Medellin</span>
+      </p>
+      <a href={`https://waze.com/ul?ll=${CASAROCA_GEO}&navigate=yes`}>
+        <span class="material-symbols-outlined">location_on</span>
+        Como llegar Waze
+      </a>
+      {
+        noReception && (
+          <>
+            <p>
+              <b>Recepcion:</b>
+              <span>Hotel casa madero</span>
+            </p>
+            <a href={`https://waze.com/ul?ll=${CASAMADERO_GEO}&navigate=yes`}>
+              <span class="material-symbols-outlined">location_on</span>
+              Como llegar Waze
+            </a>
+          </>
+        )
+      }
+    </div>
+    <div class="action">
+      <a href="https://wa.me/573175224134?text=">Confirmar asistencia</a>
+    </div>
+    <img class="top" src="flor_1.png" />
+    <img class="bottom" src="flor_1.png" />
+  </section>
+</main>
+
+<style lang="scss">
+  main {
+    width: 100%;
+    max-width: 430px;
+  }
+  #videoContainer {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 2rem;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #41241b;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+  }
+
+  #information {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      z-index: 3;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+    }
+
+    .content {
+      z-index: 2;
+      position: relative;
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+
+      h2 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.3rem;
+        b {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .action {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    img {
+      position: absolute;
+      z-index: 1;
+      &.top {
+        top: -150px;
+        left: -100px;
+        opacity: 0.3;
+      }
+      &.bottom {
+        bottom: -100px;
+        right: -100px;
+      }
+    }
+  }
+
+  a {
+    background-color: #b5543a;
+    padding: 0.8rem 2rem;
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    // justify-content: center;
+    align-content: center;
+  }
+
+  video {
+    object-position: top;
+    position: relative;
+  }
+</style>
+
+<script>
+  const videoPlayer = document.getElementById("videoplayer");
+  const infoContainer = document.getElementById("information");
+  videoPlayer.addEventListener("ended", () => {
+    infoContainer.scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+</script>
