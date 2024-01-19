@@ -1,6 +1,6 @@
 ---
 const name = Astro.url.searchParams.get("name");
-const noReception = Astro.url.searchParams.get("rc") === "false";
+const reception = Astro.url.searchParams.get("rc") === "true";
 const CASAROCA_GEO = "6.1859761215754725,-75.58374934139052";
 const CASAMADERO_GEO = "6.174056655310626,-75.55976371249594";
 const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
@@ -34,7 +34,7 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
         Como llegar Waze
       </a>
       {
-        noReception && (
+        reception && (
           <>
             <p>
               <b>Recepcion:</b>
