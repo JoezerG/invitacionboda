@@ -51,8 +51,9 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     <div class="action">
       <a href={WSLINK}>Confirmar asistencia</a>
     </div>
-    <img class="top" src="flor_1.png" />
-    <img class="bottom" src="flor_1.png" />
+    <img class="top" src="flor_1.webp" />
+    <img class="bottom" src="flor_1.webp" />
+    <img class="ancla" src="ancla.webp" />
   </section>
 </main>
 
@@ -134,8 +135,13 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
         opacity: 0.3;
       }
       &.bottom {
-        bottom: -100px;
         right: -100px;
+      }
+
+      &.ancla {
+        bottom: -95px;
+        left: -120px;
+        transform: scale(0.65) rotateZ(40deg);
       }
     }
   }
