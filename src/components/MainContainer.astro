@@ -54,6 +54,14 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
           </>
         )
       }
+      <p>
+        <b>Vestido:</b>
+        <span>Formal de dia</span>
+      </p>
+      <p>
+        <b>Regalos:</b>
+        <span>Lluvia de sobres</span>
+      </p>
     </div>
     <div class="action">
       <a href={WSLINK}>Confirmar asistencia</a>
@@ -142,13 +150,16 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
         opacity: 0.3;
       }
       &.bottom {
-        right: -100px;
+        right: -150px;
+        bottom: -120px;
+        opacity: 0.4;
       }
 
       &.ancla {
         bottom: -95px;
         left: -120px;
         transform: scale(0.65) rotateZ(40deg);
+        opacity: 0.5;
       }
     }
   }
