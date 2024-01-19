@@ -11,7 +11,9 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
 <main>
   <section id="videoContainer">
     <h1>Hola, {name}</h1>
-    <video id="videoplayer" src="video_invitacion.mp4" autoplay="true"></video>
+    <video id="videoplayer" autoplay muted playsinline>
+      <source src="video_invitacion.mp4" type="video/mp4" />
+    </video>
   </section>
   <section id="information">
     <div class="content">
@@ -60,7 +62,7 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     max-width: 430px;
   }
   #videoContainer {
-    height: 100vh;
+    height: 100dvh;
     display: grid;
     place-content: center;
     text-align: center;
@@ -80,7 +82,7 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
   }
 
   #information {
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     position: relative;
 
@@ -144,7 +146,6 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     color: white;
     text-decoration: none;
     display: inline-flex;
-    // justify-content: center;
     align-content: center;
   }
 
