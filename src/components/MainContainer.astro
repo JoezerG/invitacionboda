@@ -1,17 +1,20 @@
 ---
 const name = Astro.url.searchParams.get("name");
-const reception = Astro.url.searchParams.get("rc") === "true";
+// const reception = Astro.url.searchParams.get("rc") === "true";
 const CASAROCA_GEO = "6.1859761215754725,-75.58374934139052";
 const CASAMADERO_GEO = "6.174056655310626,-75.55976371249594";
 const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
-  "Hola! Claro nosotros confirmamos 🤵🏻👰🏻‍♀️🎉"
+  "¡Hola 👋🏼 Soy 'Tu nombre aquí' allí estaré(mos) con la ayuda de Dios! 👰🏻‍♀️🤵🏻🎉"
 )}`;
 ---
 
 <main>
+  <div id="playbutton">
+    <span class="material-symbols-outlined"> play_circle</span>
+  </div>
   <section id="videoContainer">
-    <h1>Hola, {name}</h1>
-    <video id="videoplayer" autoplay muted playsinline>
+    {name && <h1>{name}</h1>}
+    <video id="videoplayer" playsinline>
       <source src="video_invitacion.mp4" type="video/mp4" />
     </video>
   </section>
@@ -30,41 +33,56 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
       </p>
       <p>
         <b>Hora:</b>
-        <span>10 AM</span>
+        <span>10 A.M.</span>
       </p>
       <p>
         <b>Ceremonia:</b>
-        <span>Iglesia CasaRoca Medellin</span>
       </p>
       <a href={`https://waze.com/ul?ll=${CASAROCA_GEO}&navigate=yes`}>
-        <span class="material-symbols-outlined">location_on</span>
-        Como llegar Waze
+        <span class="material-symbols-outlined"> church</span>
+        Iglesia Casa Roca Medellin
       </a>
       {
-        reception && (
+        name && (
           <>
             <p>
-              <b>Recepcion:</b>
-              <span>Hotel casa madero</span>
+              <>
+                <b>Recepción:</b>
+                <br />
+              </>
             </p>
             <a href={`https://waze.com/ul?ll=${CASAMADERO_GEO}&navigate=yes`}>
-              <span class="material-symbols-outlined">location_on</span>
-              Como llegar Waze
+              <span class="material-symbols-outlined">brunch_dining</span>
+              Hotel casa madero
             </a>
           </>
         )
       }
-      <p>
-        <b>Vestido:</b>
-        <span>Formal de dia</span>
-      </p>
-      <p>
-        <b>Regalos:</b>
-        <span>Lluvia de sobres</span>
-      </p>
+      <div class="info">
+        <p>
+          <span class="material-symbols-outlined"> checkroom</span>
+          <b>Vestido:</b> Formal
+        </p>
+        {
+          name && (
+            <p>
+              <span class="material-symbols-outlined">redeem</span>
+              <b>Regalo: </b> Lluvia de sobres
+            </p>
+          )
+        }
+      </div>
     </div>
     <div class="action">
-      <a href={WSLINK}>Confirmar asistencia</a>
+      <a href={WSLINK}>
+        <span class="material-symbols-outlined">check_circle</span>
+        Confirmar asistencia</a
+      >
+      <p>
+        <small>
+          Agradecemos confirmar antes del <br /><b>10 de Febrero de 2024</b>
+        </small>
+      </p>
     </div>
     <img class="top" src="flor_1.webp" />
     <img class="bottom" src="flor_1.webp" />
@@ -78,16 +96,31 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     max-width: 430px;
   }
   #videoContainer {
-    height: 100dvh;
-    display: grid;
-    place-content: center;
-    text-align: center;
     position: relative;
+    height: 100vh;
+    max-height: 768px;
+    video {
+      max-height: 100dvh;
+      object-fit: contain;
+    }
+  }
+
+  #playbutton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    margin-left: calc(-112px / 2);
+    margin-top: -116px;
+
+    span {
+      font-size: 7rem;
+      color: #b5543a;
+    }
   }
 
   h1 {
     font-size: 2rem;
-    position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
@@ -95,12 +128,15 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     color: #41241b;
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(3px);
+    position: absolute;
+    text-align: center;
   }
 
   #information {
-    height: 100dvh;
+    height: 100vh;
     overflow: hidden;
     position: relative;
+    max-height: 768px;
 
     &::before {
       content: "";
@@ -121,7 +157,7 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     .content {
       z-index: 2;
       position: relative;
-      margin-top: 3rem;
+      margin-top: 1rem;
       padding: 1rem 2rem;
 
       h2 {
@@ -138,7 +174,7 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     .action {
       position: relative;
       z-index: 2;
-      padding: 2rem;
+      padding: 0 2rem;
     }
 
     img {
@@ -182,6 +218,29 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
     text-decoration: none;
     display: inline-flex;
     align-content: center;
+    span {
+      margin-right: 10px;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    b {
+      font-weight: bold;
+    }
+  }
+
+  .info {
+    padding: 2rem 0;
+    p {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span.material-symbols-outlined {
+        color: #b5543a;
+      }
+    }
   }
 
   video {
@@ -191,8 +250,16 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
 </style>
 
 <script>
+  const playButton = document.getElementById("playbutton");
   const videoPlayer = document.getElementById("videoplayer");
   const infoContainer = document.getElementById("information");
+
+  playButton.addEventListener("click", () => {
+    playButton.hidden = true;
+    videoPlayer.volume = 1.0;
+    videoPlayer.play();
+  });
+
   videoPlayer.addEventListener("ended", () => {
     infoContainer.scrollIntoView({
       behavior: "smooth",
