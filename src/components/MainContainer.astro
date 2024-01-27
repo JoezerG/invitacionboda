@@ -261,6 +261,8 @@ const WSLINK = `https://wa.me/573175224134?text=${encodeURI(
   });
 
   videoPlayer.addEventListener("ended", () => {
+    videoPlayer.load();
+    playButton.hidden = false;
     infoContainer.scrollIntoView({
       behavior: "smooth",
     });
